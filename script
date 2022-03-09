@@ -1,0 +1,13 @@
+Connect-AzAccount
+#Set Azure Subscription
+Select-AzSubscription -subscriptionid "17e9205a-8948-4a20-bb06-e19bf176af49"
+
+#create azure storage account context
+$Context = New-AzStorageContext -StorageAccountName "fcsb" -StorageAccountKey "Ab4SDq4hNmq86CmWLua87thrCn2m7MzdmrH3Q8DN8c/7mgbDkEUjTeFK/ZR6OHGwmqw89ZFIu5A1nwjY/v0xnw=="
+
+Get-AzStorageFileHandle -Context $Context -ShareName "test1" -Recursive | Sort-Object ClientIP,OpenTime
+
+#Set Context
+$Context = New-AzStorageContext -StorageAccountName "fcsb" -StorageAccountKey "Ab4SDq4hNmq86CmWLua87thrCn2m7MzdmrH3Q8DN8c/7mgbDkEUjTeFK/ZR6OHGwmqw89ZFIu5A1nwjY/v0xnw=="
+#To close the open handles
+Close-AzStorageFileHandle -Context $Context -ShareName "test1" -Path 'azcopy.exe' -CloseAll
