@@ -13,3 +13,6 @@ $Context = New-AzStorageContext -StorageAccountName "yourstorageaccount" -Storag
 
 #To close the open handles
 Close-AzStorageFileHandle -Context $Context -ShareName "filesharename" -Path 'azcopy.exe' -CloseAll
+
+#To Close all the open handles
+Close-AzStorageFileHandle -Context $Context -ShareName "filesharename" -CloseAll -Recursive
